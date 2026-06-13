@@ -17,6 +17,14 @@ WORKDIR /
 
 COPY .mvn .mvn
 COPY mvnw .
+COPY .mvn .mvn
+COPY mvnw .
+COPY pom.xml .
+
+# ← Yeh line add karo
+RUN sed -i 's/\r$//' mvnw && chmod +x mvnw
+
+RUN ./mvnw dependency:go-offline -B -q
 COPY pom.xml .
 
 RUN ./mvnw dependency:go-offline -B -q
